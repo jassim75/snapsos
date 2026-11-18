@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#b71c1c">
+<title>SnapSOS - join the group</title>
+<meta name="robots" content="noindex">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#f4f6f8;color:#1c2630;font:16px system-ui,-apple-system,Roboto,sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:#fff;border-radius:18px;padding:22px;width:min(94vw,440px);text-align:center;box-shadow:0 4px 20px #0002}
+h1{color:#c62828;font-size:26px;margin:6px 0 4px}.ar{font-family:Tahoma,system-ui,sans-serif}
+#what{color:#455a64;margin:6px 0 12px}
+.code{font:700 30px ui-monospace,Consolas,monospace;letter-spacing:5px;background:#fbe9e7;border-radius:12px;padding:10px;margin:8px 0}
+.btn{display:block;width:100%;padding:15px;border-radius:12px;border:0;font-size:17px;font-weight:700;margin-top:10px;text-decoration:none;cursor:pointer}
+.go{background:#d32f2f;color:#fff}.grey{background:#eceff1;color:#1c2630}.off{opacity:.55;pointer-events:none}
+small{display:block;color:#78909c;margin-top:14px;line-height:1.4}
+</style></head><body>
+<div class="card">
+  <img src="icon-192.png" width="96" height="96" alt="SnapSOS" style="border-radius:22px;display:block;margin:0 auto 4px">
+  <h1>SnapSOS</h1>
+  <div id="what">You're invited to join a SnapSOS group.<br><span class="ar" dir="rtl">أنت مدعو للانضمام إلى مجموعة في SnapSOS.</span></div>
+  <div class="code" id="code"></div>
+  <a class="btn go" id="open" href="#">Open in SnapSOS &nbsp;|&nbsp; <span class="ar" dir="rtl">افتح في SnapSOS</span></a>
+  <small>No SnapSOS app yet? Get it, then tap the link again or type the code above in My groups &gt; Join with a code.<br><span class="ar" dir="rtl">لا يوجد لديك التطبيق؟ حمّله ثم اضغط الرابط مرة أخرى أو اكتب الرمز في مجموعاتي &gt; انضم برمز.</span></small>
+  <a class="btn grey" id="android" href="SnapSOS.apk" download="SnapSOS.apk">Download SnapSOS for Android &nbsp;|&nbsp; <span class="ar" dir="rtl">تحميل SnapSOS للأندرويد</span></a>
+  <a class="btn grey" id="ios" href="#">iPhone &nbsp;|&nbsp; <span class="ar">آيفون</span></a>
+  <small>SOS, photos and videos go only to your own group's admin and the people the admin chose.<br><span class="ar" dir="rtl">نداء الطوارئ والصور والمقاطع تذهب فقط لمشرف مجموعتك ومن يختاره المشرف.</span></small>
+</div>
+<script>
+// The invite code is in ?g=CODE. This page hands it to the app (snapsos://join?g=CODE) and shows where to get the app.
+var IOS = '';   // TestFlight / App Store link when the iPhone app is out
+var m = /[?&#]g=([A-Za-z0-9]+)/.exec(location.search + location.hash);
+var g = m ? m[1].toUpperCase() : '';
+var isAndroid = /Android/i.test(navigator.userAgent);
+var isApple = /iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent) && 'ontouchend' in document;
+var openEl = document.getElementById('open');
+document.getElementById('code').textContent = g || '';
+if (!g) {
+  document.getElementById('what').innerHTML = 'One big SOS button, photo and video reports for your family, friends or work team.<br><span class="ar" dir="rtl">زر طوارئ كبير وتقارير بالصور والفيديو لعائلتك وأصدقائك وفريق عملك.</span>';
+  document.getElementById('code').style.display = 'none'; openEl.style.display = 'none'; }
+openEl.href = isAndroid ? 'intent://join?g=' + g + '#Intent;scheme=snapsos;end' : 'snapsos://join?g=' + g;
+var ios = document.getElementById('ios');
+if (IOS) ios.href = IOS; else { ios.innerHTML += ' - coming soon'; ios.classList.add('off'); }
+if (isAndroid) ios.style.display = 'none';
+if (isApple) document.getElementById('android').style.display = 'none';
+</script>
+</body></html>
