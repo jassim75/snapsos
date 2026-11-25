@@ -24,12 +24,12 @@ small{display:block;color:#78909c;margin-top:14px;line-height:1.4}
   <a class="btn go" id="open" href="#">Open in SnapSOS &nbsp;|&nbsp; <span class="ar" dir="rtl">افتح في SnapSOS</span></a>
   <small>No SnapSOS app yet? Get it, then tap the link again or type the code above in My groups &gt; Join with a code.<br><span class="ar" dir="rtl">لا يوجد لديك التطبيق؟ حمّله ثم اضغط الرابط مرة أخرى أو اكتب الرمز في مجموعاتي &gt; انضم برمز.</span></small>
   <a class="btn grey" id="android" href="SnapSOS.apk" download="SnapSOS.apk">Download SnapSOS for Android &nbsp;|&nbsp; <span class="ar" dir="rtl">تحميل SnapSOS للأندرويد</span></a>
-  <a class="btn grey" id="ios" href="#">iPhone &nbsp;|&nbsp; <span class="ar">آيفون</span></a>
+  <a class="btn grey" id="ios" href="https://apps.apple.com/qa/app/snapsos/id6838090547" target="_blank" rel="noopener">Download on the App Store &nbsp;|&nbsp; <span class="ar" dir="rtl">حمّله من App Store</span></a>
   <small>SOS, photos and videos go only to your own group's admin and the people the admin chose.<br><span class="ar" dir="rtl">نداء الطوارئ والصور والمقاطع تذهب فقط لمشرف مجموعتك ومن يختاره المشرف.</span></small>
 </div>
 <script>
 // The invite code is in ?g=CODE. This page hands it to the app (snapsos://join?g=CODE) and shows where to get the app.
-var IOS = '';   // TestFlight / App Store link when the iPhone app is out
+var IOS = 'https://apps.apple.com/qa/app/snapsos/id6838090547';   // SnapSOS on the App Store (live)
 var m = /[?&#]g=([A-Za-z0-9]+)/.exec(location.search + location.hash);
 var g = m ? m[1].toUpperCase() : '';
 var isAndroid = /Android/i.test(navigator.userAgent);
@@ -41,7 +41,7 @@ if (!g) {
   document.getElementById('code').style.display = 'none'; openEl.style.display = 'none'; }
 openEl.href = isAndroid ? 'intent://join?g=' + g + '#Intent;scheme=snapsos;end' : 'snapsos://join?g=' + g;
 var ios = document.getElementById('ios');
-if (IOS) ios.href = IOS; else { ios.innerHTML += ' - coming soon'; ios.classList.add('off'); }
+ios.href = IOS;
 if (isAndroid) ios.style.display = 'none';
 if (isApple) document.getElementById('android').style.display = 'none';
 </script>
