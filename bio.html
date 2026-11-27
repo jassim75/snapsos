@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>SnapSOS - profile bio</title>
+<link rel="icon" href="icon-192.png">
+<style>
+  :root { --red:#e0262b; --ink:#14213d; --soft:#f3f6fb; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; background:var(--soft); color:var(--ink); }
+  header { background:linear-gradient(135deg,#14213d,#27457a); color:#fff; padding:22px 16px; text-align:center; }
+  header img { width:84px; height:84px; border-radius:20px; box-shadow:0 4px 14px rgba(0,0,0,.35); }
+  header h1 { margin:10px 0 4px; font-size:24px; }
+  header p { margin:0; opacity:.85; font-size:14px; }
+  main { max-width:640px; margin:0 auto; padding:14px; }
+  .card { background:#fff; border-radius:14px; padding:14px; margin:12px 0; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+  .label { font-size:13px; font-weight:700; color:#5a6b8c; margin-bottom:6px; direction:ltr; text-align:left; }
+  .text { white-space:pre-wrap; font-size:18px; line-height:1.55; padding:10px; background:var(--soft); border-radius:10px; }
+  .ar { direction:rtl; text-align:right; }
+  .en { direction:ltr; text-align:left; }
+  .row { display:flex; justify-content:space-between; align-items:center; margin-top:10px; direction:ltr; }
+  .count { font-size:13px; color:#5a6b8c; }
+  .count.bad { color:var(--red); font-weight:700; }
+  button { background:var(--red); color:#fff; border:0; border-radius:10px; padding:11px 20px; font-size:16px; font-weight:700; cursor:pointer; }
+  button.done { background:#1f9d55; }
+  footer { text-align:center; font-size:12px; color:#7a879f; padding:18px; direction:ltr; }
+</style>
+</head>
+<body>
+<header>
+  <img src="icon-192.png" alt="SnapSOS">
+  <h1>SnapSOS</h1>
+  <p dir="ltr">@snapsosapp &middot; Snapchat &middot; TikTok &middot; Instagram</p>
+</header>
+<main>
+
+<div class="card"><div class="label">Name (all three apps)</div>
+<div class="text en" data-max="30">SnapSOS</div></div>
+
+<div class="card"><div class="label">TikTok bio - Arabic (under 80)</div>
+<div class="text ar" data-max="80">SOS وصورة وفيديو لقروبك بضغطة وحدة 🚨 مجاني على آب ستور</div></div>
+
+<div class="card"><div class="label">TikTok bio - English (under 80)</div>
+<div class="text en" data-max="80">SOS, photo &amp; video to your group in one tap 🚨 Free on the App Store</div></div>
+
+<div class="card"><div class="label">Instagram / Snapchat bio - Arabic + English (under 150)</div>
+<div class="text ar" data-max="150">SOS وصورة وفيديو وموقعك لقروبك بضغطة وحدة 🚨 مجاني على آب ستور
+SOS, photo &amp; video to your group in one tap</div></div>
+
+<div class="card"><div class="label">Instagram / Snapchat bio - Arabic only (under 150)</div>
+<div class="text ar" data-max="150">اضغط SOS وتوصل صورتك وفيديوك وموقعك لأهلك وربعك بضغطة وحدة 🚨 مجاني على آب ستور 📲</div></div>
+
+<div class="card"><div class="label">English line</div>
+<div class="text en" data-max="150">SOS, photo and video to your group in one tap. Free on the App Store.</div></div>
+
+<div class="card"><div class="label">Website / link (App Store)</div>
+<div class="text en" data-max="0">https://apps.apple.com/qa/app/snapsos/id6838090547</div></div>
+
+</main>
+<footer>SnapSOS &middot; <a href="caption.html">First post caption</a> &middot; <a href="https://apps.apple.com/qa/app/snapsos/id6838090547">App Store</a></footer>
+<script>
+function copyText(t, btn) {
+  function ok() { btn.textContent = 'Copied ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1800); }
+  if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(t).then(ok, function(){ fallback(t); ok(); }); }
+  else { fallback(t); ok(); }
+}
+function fallback(t) {
+  var a = document.createElement('textarea'); a.value = t; a.style.position = 'fixed'; a.style.opacity = '0';
+  document.body.appendChild(a); a.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(a);
+}
+document.querySelectorAll('.text').forEach(function (el) {
+  var t = el.textContent, max = +el.dataset.max, n = Array.from(t).length;
+  var row = document.createElement('div'); row.className = 'row';
+  var c = document.createElement('span'); c.className = 'count' + (max && n > max ? ' bad' : '');
+  c.textContent = max ? (n + ' / ' + max + ' characters') : '';
+  var b = document.createElement('button'); b.textContent = 'Copy';
+  b.onclick = function () { copyText(t, b); };
+  row.appendChild(c); row.appendChild(b); el.parentNode.appendChild(row);
+});
+</script>
+</body>
+</html>
